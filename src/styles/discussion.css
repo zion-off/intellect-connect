@@ -1,0 +1,25 @@
+#discussion-main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8f5f2;
+  padding: 0 5vw 0 5vw;
+}
+
+#discussion-header {
+  margin-top: 10vh;
+}
+
+#discussion-input {
+  display: flex;
+  gap: 2vh;
+  flex-direction: column;
+  padding-top: 2vh;
+}
+
+#discussion-old-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  padding-top: 2vh;
+}

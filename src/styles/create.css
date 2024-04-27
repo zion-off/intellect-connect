@@ -1,0 +1,56 @@
+#create-main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8f5f2;
+  padding: 0 5vw 0 5vw;
+}
+
+#create-header {
+  margin-top: 10vh;
+}
+
+#create-form {
+  display: flex;
+  gap: 2vh;
+  flex-direction: column;
+  padding-top: 2vh;
+}
+
+#create-communityName {
+  padding: 15px;
+  border: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 45px;
+}
+
+#create-description {
+  padding: 15px;
+  border: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 45px;
+}
+
+#create-memberEmails {
+  padding: 15px;
+  border: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 45px;
+}
+
+#create-button {
+  margin-top: 10px;
+  z-index: 1;
+  background-color: white;
+  padding: 15px 100px;
+  border-radius: 45px;
+  border: solid;
+  border-color: black;
+  border-width: 3px;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+}

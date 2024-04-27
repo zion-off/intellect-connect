@@ -1,0 +1,20 @@
+#navbar-outer-container {
+  width: 100%;
+  position: absolute;
+  bottom: 2vh;
+}
+
+#navbar-main-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 45px;
+}
+
+#navbar-button {
+  background-color: #ffffff;
+  border: none;
+  padding: 0 20px;
+}

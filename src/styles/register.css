@@ -1,0 +1,83 @@
+body {
+  overflow: hidden;
+}
+
+#register-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f5f2;
+}
+
+#register-header {
+  z-index: 1;
+  text-align: center;
+}
+
+#register-form {
+  margin-top: 25vh;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#register-name {
+  width: 80vw;
+  height: 40px;
+  padding: 10px;
+  border: solid;
+  border-color: black;
+  border-width: 3px 3px 0px 3px;
+  border-radius: 10px 10px 0 0;
+
+}
+
+#register-email {
+  width: 80vw;
+  height: 40px;
+  padding: 10px;
+  border: solid;
+  border-color: black;
+  border-width: 3px 3px 3px 3px;
+}
+
+#register-password {
+  width: 80vw;
+  height: 40px;
+  padding: 10px;
+  border: solid;
+  border-color: black;
+  border-width: 0px 3px 3px 3px;
+  border-radius: 0 0 10px 10px;
+}
+
+#register-register-button {
+  margin-top: 10px;
+  z-index: 1;
+  background-color: #f8f5f2;
+  padding: 20px 110px;
+  border-radius: 45px;
+  border: solid;
+  border-color: black;
+  border-width: 3px;
+  text-decoration: none;
+  color: black;
+  width: 300px;
+}
+
+#register-yellow-circle {
+  z-index: 0;
+  position: absolute;
+  background-color: #f9bc60;
+  border-radius: 500px / 400px;
+  top: -45%;
+  width: 120%;
+  height: 90%;
+  align-items: center;
+}
