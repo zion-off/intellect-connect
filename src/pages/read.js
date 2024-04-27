@@ -26,7 +26,6 @@ const Read = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log();
  
     try {
       // Create a file reference in Firebase Storage
