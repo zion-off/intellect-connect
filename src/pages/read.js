@@ -30,7 +30,6 @@ const Read = (props) => {
     try {
       // Create a file reference in Firebase Storage
       const fileRef = ref(storage, file.name);
-
       // Upload file to Firebase Storage
       const uploadTask = uploadBytesResumable(fileRef, file);
 
