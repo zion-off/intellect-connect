@@ -1,0 +1,53 @@
+#communities-main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8f5f2;
+  padding: 0 5vw 0 5vw;
+}
+
+#communities-add-image {
+  width: 10vw;
+  padding-top: 5vh;
+}
+
+#communities-header {
+  z-index: 1;
+}
+/* communities.css */
+.list-no-bullets {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-no-indentation > li {
+  margin-left: 0; /* Remove the default left margin */
+  padding: 30px 10px 15px 10px;
+}
+
+/* Reduce spacing between list items */
+ul.list-no-bullets li {
+  margin-bottom: -20px; /* Adjust this value to change the spacing */
+}
+
+/* Define stacking order for list items */
+ul.list-no-bullets li {
+  position: relative; /* Ensure z-index works */
+  background-color: white;
+  border-radius: 10px 10px 0 0;
+}
+
+ul.list-no-bullets li:first-child {
+  z-index: 1; /* Highest z-index for the first list item */
+  border: solid;
+  border-color: black;
+  border-radius: 10px;
+  padding: 15px 10px;
+}
+
+ul.list-no-bullets li:last-child {
+  z-index: 0; /* Lowest z-index for the last list item */
+  border: solid;
+  border-color: black;
+  border-radius: 10px;
+}
