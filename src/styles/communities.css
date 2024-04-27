@@ -23,6 +23,9 @@
 .list-no-indentation > li {
   margin-left: 0; /* Remove the default left margin */
   padding: 30px 10px 15px 10px;
+  border: solid;
+  border-color: black;
+  border-radius: 10px 10px 10px 10px;
 }
 
 /* Reduce spacing between list items */
@@ -34,20 +37,9 @@ ul.list-no-bullets li {
 ul.list-no-bullets li {
   position: relative; /* Ensure z-index works */
   background-color: white;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 10px 10px;
 }
 
 ul.list-no-bullets li:first-child {
-  z-index: 1; /* Highest z-index for the first list item */
-  border: solid;
-  border-color: black;
-  border-radius: 10px;
-  padding: 15px 10px;
-}
-
-ul.list-no-bullets li:last-child {
-  z-index: 0; /* Lowest z-index for the last list item */
-  border: solid;
-  border-color: black;
-  border-radius: 10px;
+  padding: 20px 10px;
 }

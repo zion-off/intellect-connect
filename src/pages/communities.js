@@ -17,17 +17,16 @@ function Communities() {
         const communitiesRef = collection(db, "communities");
         const querySnapshot = await getDocs(communitiesRef);
 
-        const currentUserEmail = auth.currentUser?.email; // Get the current user's email
+        const currentUserEmail = auth.currentUser?.email;
         const data = [];
         querySnapshot.forEach((doc) => {
           const community = { id: doc.id, ...doc.data() };
-          // Filter to include only communities containing the current user's email in the members list
           if (community.members.includes(currentUserEmail)) {
             data.push(community);
           }
         });
 
-        setCommunityData(data); // Update state with the filtered data
+        setCommunityData(data);
       } catch (error) {
         console.error("Error fetching communities: ", error);
       }
@@ -53,7 +52,9 @@ function Communities() {
                   : index === communityData.length - 1
                   ? "last-list-item"
                   : ""
-              }>
+              }
+              style={{ zIndex: communityData.length - index }}
+            >
               <Link to={`/community/${community.id}`}>{community.name}</Link>
             </li>
           ))}
