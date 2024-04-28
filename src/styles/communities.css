@@ -30,7 +30,7 @@
 
 /* Reduce spacing between list items */
 ul.list-no-bullets li {
-  margin-bottom: -20px; /* Adjust this value to change the spacing */
+  margin-bottom: -20px; 
 }
 
 /* Define stacking order for list items */

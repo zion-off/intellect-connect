@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase"; // Assuming you have a firebase.js file for authentication
@@ -9,6 +9,16 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Disable scrolling
+    document.body.style.overflow = "hidden";
+
+    // Enable scrolling again when the component unmounts
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -52,6 +62,12 @@ const Login = () => {
           Login
         </button>
       </form>
+      <p style={{ color: "black", zIndex: "100", fontSize: "small" }}>
+        Back to{" "}
+        <Link style={{ color: "black" }} to={`/`}>
+          home
+        </Link>
+      </p>
     </div>
   );
 };

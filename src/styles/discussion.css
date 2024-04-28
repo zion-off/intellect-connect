@@ -1,25 +1,65 @@
 #discussion-main-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   background-color: #f8f5f2;
   padding: 0 5vw 0 5vw;
 }
 
 #discussion-header {
   margin-top: 10vh;
+  color: #a9a9a9;
+}
+
+#discussion-title {
+  font-weight: bold;
 }
 
 #discussion-input {
   display: flex;
-  gap: 2vh;
   flex-direction: column;
   padding-top: 2vh;
+}
+
+#discussion-post-title {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  font-weight: bold;
+}
+
+#discussion-post-content {
+  padding: 10px 15px;
+  border: none;
+}
+
+#discussion-post-button {
+  border: none;
+  display: flex;
+  justify-content: right;
+  padding: 10px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 10vh;
+}
+
+#discussion-post-icon {
+  width: 30px;
 }
 
 #discussion-old-posts {
   display: flex;
   flex-direction: column;
-  gap: 2vh;
   padding-top: 2vh;
+  background-color: #ebebeb98; /* Light grey background */
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+#discussion-timestamp,
+#discussion-username {
+  font-size: 0.8em;
+  color: #a9a9a9;
 }

@@ -44,19 +44,26 @@ function Communities() {
       {communityData.length > 0 ? (
         <ul className="list-no-bullets list-no-indentation">
           {communityData.map((community, index) => (
-            <li
-              key={community.id}
-              className={
-                index === 0
-                  ? "first-list-item"
-                  : index === communityData.length - 1
-                  ? "last-list-item"
-                  : ""
-              }
-              style={{ zIndex: communityData.length - index }}
-            >
-              <Link to={`/community/${community.id}`}>{community.name}</Link>
-            </li>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "black",
+                fontWeight: "bold",
+              }}
+              to={`/community/${community.id}`}>
+              <li
+                key={community.id}
+                className={
+                  index === 0
+                    ? "first-list-item"
+                    : index === communityData.length - 1
+                    ? "last-list-item"
+                    : ""
+                }
+                style={{ zIndex: communityData.length - index, border: "1px solid black" }}>
+                {community.name}
+              </li>
+            </Link>
           ))}
         </ul>
       ) : (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
+import Navbar from "./navbar";
 import "../styles/create.css";
 
 const Create = () => {
@@ -61,6 +62,7 @@ const Create = () => {
         />
         <button id="create-button" type="submit">Save</button>
       </form>
+      <Navbar />
     </div>
   );
 };

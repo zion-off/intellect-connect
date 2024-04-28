@@ -19,7 +19,7 @@ const Navbar = () => {
           <button id="navbar-button">
             <HomeIcon
               id="navbar-home-icon"
-              style={{ fill: homeIconColor, height: "24px", width: "24px" }}
+              style={{ fill: 'homeIconColor', height: "24px", width: "24px" }}
             />
           </button>
         </Link>
