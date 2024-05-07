@@ -26,7 +26,22 @@
   border: 1px solid black;
 }
 
-#communitydetails-reading-link {
+#community-details-reading-link {
   text-decoration: none;
   color: #000000;
+}
+
+#community-details-icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#community-details-add-image {
+  width: 10vw;
+  padding-top: 5vh;
+}
+
+#community-details-refresh-image {
+  width: 10vw;
+  padding-top: 5vh;
 }

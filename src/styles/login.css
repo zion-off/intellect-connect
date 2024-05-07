@@ -56,7 +56,7 @@
   z-index: 0;
   position: absolute;
   background-color: #078080;
-  border-radius: 500px / 400px;
+  border-radius: 500px 500px 0 0;
   bottom: -25%;
   width: 120%;
   height: 90%;

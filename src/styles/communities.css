@@ -6,7 +6,17 @@
   padding: 0 5vw 0 5vw;
 }
 
+#communities-icons {
+  display: flex;
+  justify-content: space-between;
+}
+
 #communities-add-image {
+  width: 10vw;
+  padding-top: 5vh;
+}
+
+#communities-refresh-image {
   width: 10vw;
   padding-top: 5vh;
 }
@@ -30,7 +40,7 @@
 
 /* Reduce spacing between list items */
 ul.list-no-bullets li {
-  margin-bottom: -20px; 
+  margin-bottom: -10px; 
 }
 
 /* Define stacking order for list items */

@@ -33,7 +33,15 @@ const Login = () => {
       console.log("User logged in:", userCredential.user);
       navigate("/communities");
     } catch (err) {
-      setError(err.message);
+      const errorCode = err.code;
+      let errorMessage = "An error occurred, please try again.";
+      if (
+        errorCode === "auth/user-not-found" ||
+        errorCode === "auth/wrong-password"
+      ) {
+        errorMessage = "Invalid email or password.";
+      }
+      setError(errorMessage);
     }
   };
 

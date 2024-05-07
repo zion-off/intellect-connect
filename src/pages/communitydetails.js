@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import add from "../assets/add.png";
+import refresh from "../assets/refresh.png";
 import Navbar from "./navbar";
 
 function CommunityDetails() {
@@ -26,46 +27,47 @@ function CommunityDetails() {
     return `hsl(${hue}, 70%, 60%)`; // Fixed saturation and lightness
   };
 
+  const fetchCommunityData = async () => {
+    try {
+      const communityDocRef = doc(db, "communities", id);
+      const communitySnapshot = await getDoc(communityDocRef);
+      if (communitySnapshot.exists()) {
+        const communityData = communitySnapshot.data();
+        setCommunityData({
+          ...communityData,
+          members: communityData.members || [], // Initialize members as an empty array if it doesn't exist
+        });
+      } else {
+        console.error("Community not found");
+      }
+    } catch (error) {
+      console.error("Error fetching community data: ", error);
+    }
+  };
+
+  const fetchReadsData = async () => {
+    try {
+      const readsCollectionRef = collection(db, "reads");
+      const readsQuery = query(
+        readsCollectionRef,
+        where("communityId", "==", id)
+      );
+      const readsSnapshot = await getDocs(readsQuery);
+      const readsData = readsSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setReads(readsData);
+    } catch (error) {
+      console.error("Error fetching reads data: ", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchCommunityData = async () => {
-      try {
-        const communityDocRef = doc(db, "communities", id);
-        const communitySnapshot = await getDoc(communityDocRef);
-        if (communitySnapshot.exists()) {
-          const communityData = communitySnapshot.data();
-          setCommunityData({
-            ...communityData,
-            members: communityData.members || [], // Initialize members as an empty array if it doesn't exist
-          });
-        } else {
-          console.error("Community not found");
-        }
-      } catch (error) {
-        console.error("Error fetching community data: ", error);
-      }
-    };
-
-    const fetchReadsData = async () => {
-      try {
-        const readsCollectionRef = collection(db, "reads");
-        const readsQuery = query(
-          readsCollectionRef,
-          where("communityId", "==", id)
-        );
-        const readsSnapshot = await getDocs(readsQuery);
-        const readsData = readsSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setReads(readsData);
-      } catch (error) {
-        console.error("Error fetching reads data: ", error);
-      }
-    };
-
     fetchReadsData();
     fetchCommunityData();
   }, [id]); // Re-run effect when ID changes
+ // Re-run effect when ID changes
 
   const handleAddMember = async () => {
     if (!newMemberEmail.includes("@")) {
@@ -89,11 +91,26 @@ function CommunityDetails() {
     }
   };
 
+  const handleRefresh = () => {
+    fetchCommunityData();
+    fetchReadsData();
+  };
+
   return (
     <div id="community-details-main-container">
+      <div id="community-details-icons">
       <Link to={`/read/${id}`}>
-        <img id="communities-add-image" src={add} alt="add" />
+        <img id="community-details-add-image" src={add} alt="add" />
       </Link>
+      <img
+        id="community-details-refresh-image"
+        src={refresh}
+        alt="refresh"
+        onClick={handleRefresh}
+        style={{ cursor: "pointer" }}
+      />
+      </div>
+      
       {communityData ? (
         <div>
           <h2>{communityData.name}</h2>
@@ -109,7 +126,7 @@ function CommunityDetails() {
           {reads.map((read) => (
             <li id="communitydetails-reading-list-items" key={read.id}>
               <Link
-                id="communitydetails-reading-link"
+                id="community-details-reading-link"
                 to={`/discussion/${read.id}`}>
                 <h4>{read.title}</h4>
               </Link>
