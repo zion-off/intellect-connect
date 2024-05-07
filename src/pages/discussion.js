@@ -4,10 +4,10 @@ import {
   collection,
   query,
   where,
-  getDocs,
+  onSnapshot,
   addDoc,
-  doc,
   getDoc,
+  doc,
 } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import "../styles/discussion.css";
@@ -40,23 +40,18 @@ function Discussion() {
     fetchRead();
   }, [id]);
 
-  const fetchPosts = async () => {
-    try {
-      const postsCollectionRef = collection(db, "posts");
-      const postsQuery = query(postsCollectionRef, where("readId", "==", id));
-      const postsSnapshot = await getDocs(postsQuery);
-      const postsData = postsSnapshot.docs.map((doc) => ({
+  useEffect(() => {
+    const postsCollectionRef = collection(db, "posts");
+    const postsQuery = query(postsCollectionRef, where("readId", "==", id));
+    const unsubscribe = onSnapshot(postsQuery, (snapshot) => {
+      const postsData = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setPosts(postsData);
-    } catch (error) {
-      console.error("Error fetching posts: ", error);
-    }
-  };
+    });
 
-  useEffect(() => {
-    fetchPosts();
+    return unsubscribe;
   }, [id]);
 
   const handleSubmit = async (e) => {
@@ -71,13 +66,11 @@ function Discussion() {
         createdAt: new Date(),
       };
 
-      const docRef = await addDoc(collection(db, "posts"), newPost);
-      console.log("Post added with ID: ", docRef.id);
+      await addDoc(collection(db, "posts"), newPost);
 
       // Clear the input fields after successful submission
       setPostTitle("");
       setPostContent("");
-      fetchPosts();
     } catch (error) {
       console.error("Error adding post: ", error);
     }
