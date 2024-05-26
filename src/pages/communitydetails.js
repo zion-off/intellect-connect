@@ -13,6 +13,7 @@ import {
 import { db } from "../firebase";
 import add from "../assets/add.png";
 import refresh from "../assets/refresh.png";
+import loading from "../assets/loading.gif";
 import Navbar from "./navbar";
 
 function CommunityDetails() {
@@ -67,7 +68,7 @@ function CommunityDetails() {
     fetchReadsData();
     fetchCommunityData();
   }, [id]); // Re-run effect when ID changes
- // Re-run effect when ID changes
+  // Re-run effect when ID changes
 
   const handleAddMember = async () => {
     if (!newMemberEmail.includes("@")) {
@@ -99,76 +100,98 @@ function CommunityDetails() {
   return (
     <div id="community-details-main-container">
       <div id="community-details-icons">
-      <Link to={`/read/${id}`}>
-        <img id="community-details-add-image" src={add} alt="add" />
-      </Link>
-      <img
-        id="community-details-refresh-image"
-        src={refresh}
-        alt="refresh"
-        onClick={handleRefresh}
-        style={{ cursor: "pointer" }}
-      />
+        <Link to={`/read/${id}`}>
+          <img id="community-details-add-image" src={add} alt="add" />
+        </Link>
+        <img
+          id="community-details-refresh-image"
+          src={refresh}
+          alt="refresh"
+          onClick={handleRefresh}
+          style={{ cursor: "pointer" }}
+        />
       </div>
-      
+
       {communityData ? (
         <div>
-          <h2>{communityData.name}</h2>
-          <p>{communityData.description}</p>
+          <h2 id="communitydetails-communityname">{communityData.name}</h2>
+          <p id="communitydetails-communitydescription">
+            {communityData.description}
+          </p>
           {/* Add more relevant data as needed */}
         </div>
       ) : (
-        <p>Loading...</p>
+        <div id="primary-loader">
+          <img id="loading" src={loading} alt="loading" />
+        </div>
       )}
-      <h3>Readings</h3>
-      {reads.length > 0 ? (
-        <ul id="communitydetails-reading-list">
-          {reads.map((read) => (
-            <li id="communitydetails-reading-list-items" key={read.id}>
-              <Link
-                id="community-details-reading-link"
-                to={`/discussion/${read.id}`}>
-                <h4>{read.title}</h4>
-              </Link>
-              <p>{read.description}</p>
-            </li>
-          ))}
-        </ul>
+      <h3 style={{ fontFamily: "ClashDisplay-Variable", fontWeight: "500" }}>
+        Readings
+      </h3>
+
+      {reads ? (
+        reads.length > 0 ? (
+          <ul id="communitydetails-reading-list">
+            {reads.map((read) => (
+              <li id="communitydetails-reading-list-items" key={read.id}>
+                <Link
+                  id="community-details-reading-link"
+                  to={`/discussion/${read.id}`}>
+                  <h4>{read.title}</h4>
+                </Link>
+                <p>{read.description}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div id="primary-loader">
+            <img id="loading" src={loading} alt="loading" />
+          </div>
+        )
       ) : (
         <p>No reads found.</p>
       )}
-      <h3>Members</h3>
-      {communityData && communityData.members.length > 0 ? (
-        <ul id="communitydetails-members-list">
-          {communityData.members.map((email, index) => {
-            const emailPrefix = email.substring(0, email.indexOf("@"));
-            return (
-              <li
-                key={index}
-                style={{ display: "inline-block", margin: "5px" }}>
-                <div
-                  style={{
-                    backgroundColor: getRandomColor(),
-                    color: "white",
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "12px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}>
-                  {emailPrefix}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+
+      <h3 style={{ fontFamily: "ClashDisplay-Variable", fontWeight: "500" }}>
+        Members
+      </h3>
+      {communityData ? (
+        communityData.members.length > 0 ? (
+          <ul id="communitydetails-members-list">
+            {communityData.members.map((email, index) => {
+              const emailPrefix = email.substring(0, email.indexOf("@"));
+              return (
+                <li
+                  key={index}
+                  style={{ display: "inline-block", margin: "5px" }}>
+                  <div
+                    style={{
+                      backgroundColor: getRandomColor(),
+                      color: "white",
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "50%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      fontSize: "12px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}>
+                    {emailPrefix}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p>No members found.</p>
+        )
       ) : (
-        <p>No members found.</p>
+        <div id="primary-loader">
+          <img id="loading" src={loading} alt="loading" />
+        </div>
       )}
 
       {showAddMemberDialog && (
@@ -201,11 +224,40 @@ function CommunityDetails() {
               value={newMemberEmail}
               onChange={(e) => setNewMemberEmail(e.target.value)}
               placeholder="Enter member's email"
-              style={{ margin: "0 0 15px 0", border: 'solid', borderColor: 'grey', borderRadius: '15px', padding: '15px'}}
+              style={{
+                margin: "0 0 15px 0",
+                border: "solid",
+                borderColor: "grey",
+                borderRadius: "15px",
+                padding: "15px",
+              }}
             />
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '5px'}}>
-              <button style={{background: 'black', border: 'none', borderRadius: '15px', padding: '5px 10px', color: 'white'}} onClick={handleAddMember}>Add Member</button>
-              <button style={{background: 'black', border: 'none', borderRadius: '15px', padding: '5px 10px', color: 'white'}}  onClick={() => setShowAddMemberDialog(false)}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: "5px",
+              }}>
+              <button
+                style={{
+                  background: "black",
+                  border: "none",
+                  borderRadius: "15px",
+                  padding: "5px 10px",
+                  color: "white",
+                }}
+                onClick={handleAddMember}>
+                Add Member
+              </button>
+              <button
+                style={{
+                  background: "black",
+                  border: "none",
+                  borderRadius: "15px",
+                  padding: "5px 10px",
+                  color: "white",
+                }}
+                onClick={() => setShowAddMemberDialog(false)}>
                 Cancel
               </button>
             </div>

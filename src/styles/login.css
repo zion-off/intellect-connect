@@ -7,8 +7,17 @@
   background-color: #f8f5f2;
 }
 
+#login-title {
+  z-index: 1;
+  font-size: 30px;
+  color: #494949;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
+  padding: 0 0 0 30px;
+}
+
 #login-form {
-  margin-top: 25vh;
+  margin-top: 35vh;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -22,9 +31,9 @@
   width: 80vw;
   height: 40px;
   padding: 10px;
-  border: solid;
+  /* border: solid;
   border-color: black;
-  border-width: 3px 3px 3px 3px;
+  border-width: 3px 3px 0px 3px; */
   border-radius: 10px 10px 0 0;
 }
 
@@ -32,24 +41,24 @@
   width: 80vw;
   height: 40px;
   padding: 10px;
-  border: solid;
+  /* border: solid;
   border-color: black;
-  border-width: 0px 3px 3px 3px;
+  border-width: 0px 3px 3px 3px; */
   border-radius: 0 0 10px 10px;
 }
 
 #login-login-button {
-  margin-top: 10px;
+  margin-top: 20px;
   z-index: 1;
-  background-color: #f8f5f2;
   padding: 20px 110px;
   border-radius: 45px;
-  border: solid;
-  border-color: black;
-  border-width: 3px;
   text-decoration: none;
-  color: black;
-  width: 300px;
+  color: #f8f5f2;
+  width: 100%;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #38a856;
 }
 
 #login-blue-circle {
@@ -57,8 +66,8 @@
   position: absolute;
   background-color: #078080;
   border-radius: 500px 500px 0 0;
-  bottom: -25%;
+  bottom: -55%;
   width: 120%;
-  height: 90%;
+  height: 80%;
   align-items: center;
 }

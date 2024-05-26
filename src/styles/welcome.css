@@ -9,11 +9,12 @@
 
 #welcome-heading {
   z-index: 1;
-  text-align: center;
-  font-size: 30px;
+  font-size: 50px;
   color: #f45d48;
-  margin-top: 20vh;
+  margin: 20vh 0 0 0;
   padding: 0 40px;
+  font-family: 'ClashGrotesk-Variable', sans-serif;
+  font-weight: 500;
 }
 
 #welcome-subheading {
@@ -21,27 +22,48 @@
   margin-bottom: 20vh;
   font-size: 15px;
   padding: 0 10vw;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
+  color: #078080;
+}
+
+#welcome-buttons {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  gap: 1vh;
 }
 
 #welcome-login-button {
   z-index: 1;
-  background-color: #f8f5f2;
-  padding: 5px 80px;
+  background-color: #38a856;
+  padding: 2px 55px;
   border-radius: 45px;
-  border: solid;
-  border-color: black;
+  /* border: solid;
+  border-color: black; */
   text-decoration: none;
   color: black;
+  text-align: center;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
 }
 
-#welcome-sign-up-link {
+#welcome-signup-button {
   z-index: 1;
-  margin-top: 20px;
-  color: #f8f5f2;
-}
-
-#welcome-link {
-  color: #f45d48;
+  background-color: #3cb95d8f;
+  padding: 2px 55px;
+  border-radius: 45px;
+  /* border: solid;
+  border-color: black; */
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 #welcome-blue-circle {
@@ -49,8 +71,9 @@
   position: absolute;
   background-color: #078080;
   border-radius: 500px / 400px;
-  bottom: -20%;
+  bottom: -40%;
   width: 120%;
   height: 60%;
   align-items: center;
+  filter: drop-shadow(0 -4mm 4mm rgba(37, 37, 37, 0.071));
 }
