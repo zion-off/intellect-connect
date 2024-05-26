@@ -8,6 +8,8 @@
 
 #profile-header {
   margin-top: 10vh;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
 }
 
 #profile-info {
@@ -17,10 +19,14 @@
 
 #profile-name-tag {
   font-weight: bold;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
 }
 
 #profile-email-tag {
   font-weight: bold;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
 }
 
 #profile-password-tag {

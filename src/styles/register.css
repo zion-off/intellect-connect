@@ -10,6 +10,10 @@
 #register-header {
   z-index: 1;
   text-align: center;
+  color: #232323;
+  font-size: 30px;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
 }
 
 #register-form {
@@ -27,9 +31,9 @@
   width: 80vw;
   height: 40px;
   padding: 10px;
-  border: solid;
+  /* border: solid;
   border-color: black;
-  border-width: 3px 3px 0px 3px;
+  border-width: 3px 3px 0px 3px; */
   border-radius: 10px 10px 0 0;
 
 }
@@ -38,33 +42,33 @@
   width: 80vw;
   height: 40px;
   padding: 10px;
-  border: solid;
+  /* border: solid;
   border-color: black;
-  border-width: 3px 3px 3px 3px;
+  border-width: 3px 3px 3px 3px; */
 }
 
 #register-password {
   width: 80vw;
   height: 40px;
   padding: 10px;
-  border: solid;
+  /* border: solid;
   border-color: black;
-  border-width: 0px 3px 3px 3px;
+  border-width: 0px 3px 3px 3px; */
   border-radius: 0 0 10px 10px;
 }
 
 #register-register-button {
-  margin-top: 10px;
+  margin-top: 20px;
   z-index: 1;
-  background-color: #ffffff;
   padding: 20px 110px;
   border-radius: 45px;
-  border: solid;
-  border-color: black;
-  border-width: 3px;
   text-decoration: none;
-  color: black;
-  width: 300px;
+  color: #f8f5f2;
+  width: 100%;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #38a856;
 }
 
 #register-yellow-circle {
@@ -72,7 +76,7 @@
   position: absolute;
   background-color: #f9bc60;
   border-radius: 500px / 400px;
-  top: -45%;
+  top: -75%;
   width: 120%;
   height: 90%;
   align-items: center;

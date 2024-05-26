@@ -5,6 +5,51 @@ body {
   padding: 0;
 }
 
+button {
+  border: none;
+}
+
+input {
+  border-width: 0px;
+}
+
+@font-face {
+  font-family: Headings;
+  src: url(./assets/fonts/DMSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: BebasNeue;
+  src: url(./assets/fonts/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+  font-family: HindMadurai-Medium;
+  src: url(./assets/fonts/HindMadurai-Medium.ttf) ;
+}
+
+@font-face {
+  font-family: ClashGrotesk-Variable;
+  src: url(./assets/fonts/ClashGrotesk-Variable.ttf);
+}
+
+@font-face {
+  font-family: ClashDisplay-Variable;
+  src: url(./assets/fonts/ClashDisplay-Variable.ttf);
+}
+
+#primary-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#loading {
+  margin: 20px 0;
+  width: 25px;
+}
+
 /* Styles for mobile devices */
 @media (max-width: 768px) {
   /* Add your mobile-specific styles here */

@@ -4,6 +4,8 @@ import "../styles/login.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase"; // Assuming you have a firebase.js file for authentication
 
+import { motion } from "framer-motion";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,7 +49,11 @@ const Login = () => {
 
   return (
     <div className="login-main-container">
-      <div id="login-blue-circle"></div>
+      <h1 id="login-title">Get back to your communities!</h1>
+      <motion.div
+        animate={{ y: -250 }}
+        transition={{ type: "spring", stiffness: 100 }}
+        id="login-blue-circle"></motion.div>
       {error && <p>{error}</p>}
       <form onSubmit={handleLogin} id="login-form">
         <input
@@ -70,9 +76,15 @@ const Login = () => {
           Login
         </button>
       </form>
-      <p style={{ color: "black", zIndex: "100", fontSize: "small" }}>
+      <p
+        style={{
+          color: "#f8f5f2",
+          zIndex: "100",
+          fontSize: "small",
+          fontFamily: "ClashDisplay-Variable",
+        }}>
         Back to{" "}
-        <Link style={{ color: "black" }} to={`/`}>
+        <Link style={{ color: "#f8f5f2" }} to={`/`}>
           home
         </Link>
       </p>
