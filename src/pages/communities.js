@@ -91,6 +91,7 @@ function Communities() {
                   style={{
                     zIndex: communityData.length - index,
                     border: "1px solid black",
+                    paddingTop: index === 0 ? "20px" : "30px",
                   }}>
                   {community.name}
                 </motion.li>

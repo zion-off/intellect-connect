@@ -19,7 +19,7 @@
 
 #welcome-subheading {
   z-index: 1;
-  margin-bottom: 20vh;
+  margin-bottom: 40vh;
   font-size: 15px;
   padding: 0 10vw;
   font-family: 'ClashDisplay-Variable', sans-serif;
@@ -34,6 +34,8 @@
   flex-direction: column;
   width: 50%;
   gap: 1vh;
+  position: absolute;
+  bottom: 20vh;
 }
 
 #welcome-login-button {
@@ -72,9 +74,9 @@
   position: absolute;
   background-color: #078080;
   border-radius: 500px / 400px;
-  bottom: -40%;
+  bottom: -60%;
   width: 120%;
-  height: 60%;
+  height: 80%;
   align-items: center;
   filter: drop-shadow(0 -4mm 4mm rgba(37, 37, 37, 0.071));
 }
