@@ -9,10 +9,22 @@
 #discussion-header {
   margin-top: 10vh;
   color: #a9a9a9;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 600;
 }
 
 #discussion-title {
+  font-family: "Satoshi-Variable", sans-serif;
   font-weight: bold;
+}
+
+#discussion-book-title {
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 600;
+}
+
+#discussion-content {
+  font-family: "Satoshi-Variable", sans-serif;
 }
 
 #discussion-input {
@@ -31,6 +43,7 @@
 #discussion-post-content {
   padding: 10px 15px;
   border: none;
+  font-family: "Satoshi-Variable", sans-serif;
 }
 
 #discussion-post-button {
@@ -62,4 +75,5 @@
 #discussion-username {
   font-size: 0.8em;
   color: #a9a9a9;
+  font-family: "Satoshi-Variable", sans-serif;
 }

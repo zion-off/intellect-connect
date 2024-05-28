@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 100vh;
   background-color: #f8f5f2;
-  padding: 0 5vw 0 5vw;
+  padding: 10vw 5vw 0 5vw;
 }
 
 #profile-header {
@@ -17,20 +17,62 @@
   flex-direction: column;
 }
 
+#profile-pic-container {
+  position: relative;
+  text-align: center;
+  margin: 20px 0;
+}
+
+#profile-pic-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5vh 0 0 0;
+}
+
+#profile-overlay-container {
+  position: absolute;
+  top: 0;
+  
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black */
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+#profile-overlay-text {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+}
+
 #profile-name-tag {
-  font-weight: bold;
   font-family: 'ClashDisplay-Variable', sans-serif;
   font-weight: 500;
 }
 
 #profile-email-tag {
-  font-weight: bold;
   font-family: 'ClashDisplay-Variable', sans-serif;
   font-weight: 500;
 }
 
 #profile-password-tag {
-  font-weight: bold;
+  font-weight: 500;
+  font-family: 'ClashDisplay-Variable', sans-serif;
 }
 
 #profile-form-button-container {
@@ -43,37 +85,32 @@
 #profile-edit-button {
   margin-top: 2vh;
   border: none;
+  border-radius: 10px;
   padding: 20px 20px;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
+  background-color: #f9bc60;
 }
 
 #profile-name {
   width: 80vw;
   height: 40px;
   padding: 10px;
-  border: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
 }
 
 #profile-email {
   width: 80vw;
   height: 40px;
   padding: 10px;
-  border: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
 }
 
 #profile-password {
   width: 80vw;
   height: 40px;
   padding: 10px;
-  border: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
 }
 
 #profile-save-changes-button {
@@ -81,6 +118,7 @@
   border: none;
   padding: 10px 40px;
   border-radius: 25px;
+  color: white;
 }
 
 #profile-cancel-button {
@@ -99,8 +137,10 @@
 }
 
 #profile-logout-button {
-  background-color: #f9bc60;
   border: none;
   padding: 20px 40px;
-  border-radius: 25px;
+  width: 90%;
+  border-radius: 10px;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
 }

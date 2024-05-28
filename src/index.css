@@ -38,6 +38,11 @@ input {
   src: url(./assets/fonts/ClashDisplay-Variable.ttf);
 }
 
+@font-face {
+  font-family: Satoshi-Variable;
+  src: url(./assets/fonts/Satoshi-Variable.ttf);
+}
+
 #primary-loader {
   display: flex;
   justify-content: center;
