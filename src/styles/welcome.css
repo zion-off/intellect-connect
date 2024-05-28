@@ -12,14 +12,14 @@
   font-size: 50px;
   color: #f45d48;
   margin: 20vh 0 0 0;
-  padding: 0 40px;
+  padding: 20vh 40px 0 40px;
   font-family: 'ClashGrotesk-Variable', sans-serif;
   font-weight: 500;
 }
 
 #welcome-subheading {
   z-index: 1;
-  margin-bottom: 40vh;
+  margin-bottom: 20vh;
   font-size: 15px;
   padding: 0 10vw;
   font-family: 'ClashDisplay-Variable', sans-serif;
@@ -43,8 +43,6 @@
   background-color: #38a856;
   padding: 2px 55px;
   border-radius: 45px;
-  /* border: solid;
-  border-color: black; */
   text-decoration: none;
   color: black;
   text-align: center;
@@ -71,12 +69,11 @@
 
 #welcome-blue-circle {
   z-index: 0;
-  position: absolute;
   background-color: #078080;
-  border-radius: 500px / 400px;
+  border-radius: 500px 500px 0 0;
   bottom: -60%;
-  width: 120%;
-  height: 80%;
+  width: 250%;
+  min-height: 500px;
   align-items: center;
   filter: drop-shadow(0 -4mm 4mm rgba(37, 37, 37, 0.071));
 }
