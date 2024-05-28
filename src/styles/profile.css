@@ -87,7 +87,7 @@
   border: none;
   border-radius: 10px;
   padding: 20px 20px;
-  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-family: "Satoshi-Variable", sans-serif;
   font-weight: 500;
   background-color: #f9bc60;
 }
@@ -141,6 +141,6 @@
   padding: 20px 40px;
   width: 90%;
   border-radius: 10px;
-  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-family: "Satoshi-Variable", sans-serif;
   font-weight: 500;
 }
