@@ -8,6 +8,8 @@
 
 #create-header {
   margin-top: 10vh;
+  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-weight: 500;
 }
 
 #create-form {
@@ -19,38 +21,31 @@
 
 #create-communityName {
   padding: 15px;
-  border: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 45px;
+  border-radius: 10px;
+  font-family: "Satoshi-Variable", sans-serif;
 }
 
 #create-description {
   padding: 15px;
-  border: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 45px;
+  border-radius: 10px;
+  font-family: "Satoshi-Variable", sans-serif;
 }
 
 #create-memberEmails {
   padding: 15px;
-  border: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 45px;
+  border-radius: 10px;
+  font-family: "Satoshi-Variable", sans-serif;
 }
 
 #create-button {
   margin-top: 10px;
   z-index: 1;
-  background-color: white;
+  background-color: #38a856;
   padding: 15px 100px;
-  border-radius: 45px;
-  border: solid;
-  border-color: black;
-  border-width: 3px;
+  border-radius: 10px;
   text-decoration: none;
-  color: black;
+  color: white;
   width: 100%;
+  font-family: "Satoshi-Variable", sans-serif;
+  font-weight: 500;
 }
