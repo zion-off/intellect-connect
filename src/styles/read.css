@@ -8,6 +8,8 @@
 
 #read-header {
   margin-top: 10vh;
+  font-family: 'ClashGrotesk-Variable', sans-serif;
+  font-weight: 500;
 }
 
 #read-form {
@@ -15,42 +17,38 @@
   gap: 2vh;
   flex-direction: column;
   padding-top: 2vh;
+  font-family: 'ClashDisplay-Variable', sans-serif;
 }
 
 #create-title {
   padding: 15px;
-  border: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 45px;
+  border-radius: 10px;
+  font-family: 'ClashDisplay-Variable', sans-serif;
 }
 
 #create-author {
   padding: 15px;
-  border: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 45px;
+  border-radius: 10px;
+  font-family: 'ClashDisplay-Variable', sans-serif;
 }
 
 #create-pages {
   padding: 15px;
-  border: solid;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 45px;
+  border-radius: 10px;
+  font-family: 'ClashDisplay-Variable', sans-serif;
 }
 
 #read-button {
   margin-top: 10px;
   z-index: 1;
-  background-color: white;
+  background-color: #38a856;
   padding: 15px 100px;
-  border-radius: 45px;
-  border: solid;
-  border-color: black;
-  border-width: 3px;
+  border-radius: 15px;
   text-decoration: none;
-  color: black;
+  color: white;
   width: 100%;
+}
+
+#read-upload-button {
+  padding: 15px 100px;
 }

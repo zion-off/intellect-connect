@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import {
   doc,
   getDoc,
@@ -15,6 +14,8 @@ import add from "../assets/add.png";
 import refresh from "../assets/refresh.png";
 import loading from "../assets/loading.gif";
 import Navbar from "./navbar";
+import Skeleton from "@mui/material/Skeleton";
+import { motion } from "framer-motion";
 
 function CommunityDetails() {
   const { id } = useParams();
@@ -22,6 +23,11 @@ function CommunityDetails() {
   const [reads, setReads] = useState([]);
   const [showAddMemberDialog, setShowAddMemberDialog] = useState(false);
   const [newMemberEmail, setNewMemberEmail] = useState("");
+
+  const location = useLocation();
+  const { communityName, communityDescription } = location.state || {};
+  console.log("Community Name: ", communityName);
+  console.log("Community Description: ", communityDescription);
 
   const getRandomColor = () => {
     let hue = Math.floor(Math.random() * 360); // Random hue from 0 to 360
@@ -67,8 +73,7 @@ function CommunityDetails() {
   useEffect(() => {
     fetchReadsData();
     fetchCommunityData();
-  }, [id]); // Re-run effect when ID changes
-  // Re-run effect when ID changes
+  }, [id]);
 
   const handleAddMember = async () => {
     if (!newMemberEmail.includes("@")) {
@@ -93,6 +98,8 @@ function CommunityDetails() {
   };
 
   const handleRefresh = () => {
+    setCommunityData(null);
+    setReads([]);
     fetchCommunityData();
     fetchReadsData();
   };
@@ -112,13 +119,17 @@ function CommunityDetails() {
         />
       </div>
 
+      {/* <div>
+        <h2 id="communitydetails-communityname">{communityName}</h2>
+        <p id="communitydetails-communitydescription">{communityDescription}</p>
+      </div> */}
+
       {communityData ? (
         <div>
           <h2 id="communitydetails-communityname">{communityData.name}</h2>
           <p id="communitydetails-communitydescription">
             {communityData.description}
           </p>
-          {/* Add more relevant data as needed */}
         </div>
       ) : (
         <div id="primary-loader">
@@ -144,8 +155,29 @@ function CommunityDetails() {
             ))}
           </ul>
         ) : (
-          <div id="primary-loader">
-            <img id="loading" src={loading} alt="loading" />
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <Skeleton
+              variant="rectangular"
+              height={60}
+              sx={{
+                borderRadius: 2,
+              }}
+            />
+            <Skeleton
+              variant="rectangular"
+              height={60}
+              sx={{
+                borderRadius: 2,
+              }}
+            />
+            <Skeleton
+              variant="rectangular"
+              height={60}
+              sx={{
+                borderRadius: 2,
+              }}
+            />
           </div>
         )
       ) : (
@@ -155,6 +187,7 @@ function CommunityDetails() {
       <h3 style={{ fontFamily: "ClashDisplay-Variable", fontWeight: "500" }}>
         Members
       </h3>
+
       {communityData ? (
         communityData.members.length > 0 ? (
           <ul id="communitydetails-members-list">
@@ -189,13 +222,18 @@ function CommunityDetails() {
           <p>No members found.</p>
         )
       ) : (
-        <div id="primary-loader">
-          <img id="loading" src={loading} alt="loading" />
+        <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+          <Skeleton variant="circular" height={40} width={40} />
+          <Skeleton variant="circular" height={40} width={40} />
+          <Skeleton variant="circular" height={40} width={40} />
         </div>
       )}
 
       {showAddMemberDialog && (
-        <div
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
           style={{
             position: "fixed",
             top: 0,
@@ -211,14 +249,17 @@ function CommunityDetails() {
           <div
             style={{
               position: "relative",
+              width: "80%",
               backgroundColor: "white",
-              padding: "20px",
+              padding: "10px 20px 20px 20px",
               zIndex: 100,
               display: "flex",
               flexDirection: "column",
-              borderRadius: "15px",
+              borderRadius: "10px",
             }}>
-            <p>Add a new member</p>
+            <p style={{ fontFamily: "ClashDisplay-Variable" }}>
+              Add a new member
+            </p>
             <input
               type="email"
               value={newMemberEmail}
@@ -228,41 +269,44 @@ function CommunityDetails() {
                 margin: "0 0 15px 0",
                 border: "solid",
                 borderColor: "grey",
-                borderRadius: "15px",
+                borderRadius: "10px",
                 padding: "15px",
+                fontFamily: "ClashDisplay-Variable",
               }}
             />
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: "right",
                 gap: "5px",
               }}>
               <button
                 style={{
                   background: "black",
                   border: "none",
-                  borderRadius: "15px",
+                  borderRadius: "10px",
                   padding: "5px 10px",
                   color: "white",
-                }}
-                onClick={handleAddMember}>
-                Add Member
-              </button>
-              <button
-                style={{
-                  background: "black",
-                  border: "none",
-                  borderRadius: "15px",
-                  padding: "5px 10px",
-                  color: "white",
+                  fontFamily: "ClashDisplay-Variable",
                 }}
                 onClick={() => setShowAddMemberDialog(false)}>
                 Cancel
               </button>
+              <button
+                style={{
+                  background: "#38a856",
+                  border: "none",
+                  borderRadius: "10px",
+                  padding: "5px 10px",
+                  color: "white",
+                  fontFamily: "ClashDisplay-Variable",
+                }}
+                onClick={handleAddMember}>
+                Add Member
+              </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
       <button
