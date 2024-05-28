@@ -37,21 +37,22 @@
   padding: 30px 10px 15px 10px;
   border: solid;
   border-color: black;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10 10px 10px;
 }
 
 /* Reduce spacing between list items */
 ul.list-no-bullets li {
-  margin-bottom: -10px; 
+  margin-bottom: -20px; 
 }
 
 /* Define stacking order for list items */
 ul.list-no-bullets li {
   position: relative; /* Ensure z-index works */
   background-color: white;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 0 0;
 }
 
 ul.list-no-bullets li:first-child {
   padding: 20px 10px;
+  border-radius: 10px 10px 10px 10px;
 }
