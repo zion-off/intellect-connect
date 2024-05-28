@@ -1,7 +1,7 @@
 #community-details-main-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f8f5f2;
   padding: 0 5vw 0 5vw;
 }

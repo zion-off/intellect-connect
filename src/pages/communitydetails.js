@@ -132,9 +132,7 @@ function CommunityDetails() {
           </p>
         </div>
       ) : (
-        <div id="primary-loader">
-          <img id="loading" src={loading} alt="loading" />
-        </div>
+        <Skeleton variant="rounded" height={50} style={{marginTop: '20px'}} />
       )}
       <h3 style={{ fontFamily: "ClashDisplay-Variable", fontWeight: "500" }}>
         Readings
@@ -321,7 +319,7 @@ function CommunityDetails() {
           alignItems: "center",
           fontSize: "12px", // Adjust font size according to your needs
           cursor: "pointer", // Make the cursor indicate clickable items
-          margin: "5px",
+          margin: "5px 5px 10vh 5px",
           backgroundColor: "#4CAF50",
           border: "none",
         }}>

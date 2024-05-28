@@ -13,10 +13,11 @@ import { db, auth } from "../firebase";
 import "../styles/discussion.css";
 import Navbar from "./navbar";
 import post from "../assets/post.png";
+import Skeleton from "@mui/material/Skeleton";
 
 function Discussion() {
   const { id } = useParams();
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(null);
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
   const [read, setRead] = useState(null);
@@ -82,32 +83,40 @@ function Discussion() {
         <h3 id="discussion-header">Discussion</h3>
         {read ? (
           <div>
-            <h2>
-              <a href={read.fileUrl} target="_blank" rel="noopener noreferrer">
+            <h2 id="discussion-book-title">
+              <a href={read.fileUrl} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
                 {read.title}
               </a>
             </h2>
           </div>
         ) : (
-          <p>Loading...</p>
+          <Skeleton variant="rounded" height={20} />
         )}
       </div>
 
-      {posts.length > 0 ? (
-        <div id="discussion-post">
-          {posts.map((post) => (
-            <div id="discussion-old-posts" key={post.id} className="post">
-              <p id="discussion-title">{post.title}</p>
-              <p>{post.content}</p>
-              <p id="discussion-username">{post.userEmail}</p>
-              <p id="discussion-timestamp">
-                {new Date(post.createdAt.seconds * 1000).toLocaleString()}
-              </p>
-            </div>
-          ))}
-        </div>
+      {posts ? (
+        posts.length > 0 ? (
+          <div id="discussion-post">
+            {posts.map((post) => (
+              <div id="discussion-old-posts" key={post.id} className="post">
+                <p id="discussion-title">{post.title}</p>
+                <p id="discussion-content">{post.content}</p>
+                <p id="discussion-username">{post.userEmail}</p>
+                <p id="discussion-timestamp">
+                  {new Date(post.createdAt.seconds * 1000).toLocaleString()}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No posts found.</p>
+        )
       ) : (
-        <p>No posts found.</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+          <Skeleton variant="rounded" height={150} />
+          <Skeleton variant="rounded" height={150} />
+          <Skeleton variant="rounded" height={150} />
+        </div>
       )}
 
       <div id="discussion-container">
