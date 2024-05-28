@@ -25,7 +25,7 @@ function Welcome() {
         Reading has never been easier!
       </motion.h2>
       <motion.div
-        animate={{ y: -200 }}
+        animate={{ y: -100 }}
         transition={{ type: "spring", stiffness: 100 }}
         id="welcome-blue-circle"
       />
