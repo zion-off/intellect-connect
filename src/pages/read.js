@@ -1,19 +1,36 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../firebase";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import TextField from "@mui/material/TextField";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import "../styles/read.css";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  customDatePicker: {
+    backgroundColor: "white",
+    borderRadius: "10px", // Adjust the border radius as needed
+    fontFamily: "ClashDisplay-Variable",
+  },
+});
 
 const Read = (props) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [pages, setPages] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [finishDate, setFinishDate] = useState("");
+  const [startDate, setStartDate] = useState(undefined);
+  const [finishDate, setFinishDate] = useState(undefined);
   const [file, setFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const classes = useStyles();
+  const fileInputRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -26,12 +43,14 @@ const Read = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
- 
+
     try {
       // Create a file reference in Firebase Storage
       const fileRef = ref(storage, file.name);
       // Upload file to Firebase Storage
       const uploadTask = uploadBytesResumable(fileRef, file);
+      const firebaseStartDate = startDate.toDate();
+      const firebaseFinishDate = finishDate.toDate();
 
       uploadTask.on(
         "state_changed",
@@ -51,8 +70,8 @@ const Read = (props) => {
               title,
               author,
               pages: parseInt(pages),
-              startDate,
-              finishDate,
+              firebaseStartDate,
+              firebaseFinishDate,
               fileUrl: downloadURL,
               communityId: id,
             });
@@ -64,6 +83,10 @@ const Read = (props) => {
     } catch (error) {
       console.error("Error adding read: ", error);
     }
+  };
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
   };
 
   return (
@@ -94,30 +117,60 @@ const Read = (props) => {
           onChange={(e) => setPages(e.target.value)}
           required
         />
-        <label htmlFor="startDate">Start Date:</label>
-        <input
-          type="date"
-          id="create-startDate"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          required
-        />
-        <label htmlFor="finishDate">Finish Date:</label>
-        <input
-          type="date"
-          id="create-finishDate"
-          value={finishDate}
-          onChange={(e) => setFinishDate(e.target.value)}
-          required
-        />
-        <label htmlFor="file">Upload File (PDF or EPUB):</label>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              label="Start date"
+              id="create-startDate"
+              value={startDate}
+              onChange={(date) => setStartDate(date)}
+              className={classes.customDatePicker}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        borderColor: "none",
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "none",
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "none",
+                      },
+                    },
+                  }}
+                />
+              )}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              label="Finish date"
+              id="create-finishDate"
+              value={finishDate}
+              onChange={(date) => setFinishDate(date)}
+              className={classes.customDatePicker}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
         <input
           type="file"
           id="file"
           accept=".pdf,.epub"
           onChange={handleFileChange}
+          ref={fileInputRef}
+          style={{ display: "none" }}
         />
-        {uploadProgress > 0 && <p>Upload Progress: {uploadProgress}%</p>}
+        <button onClick={handleButtonClick} id="read-upload-button">
+          {uploadProgress > 0
+            ? `(Upload progress: ${uploadProgress}%)`
+            : "Upload file"}
+        </button>
+
         <button id="read-button" type="submit">
           Create Read
         </button>

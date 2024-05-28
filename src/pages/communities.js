@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/communities.css";
 import add from "../assets/add.png";
-import loading from "../assets/loading.gif";
 import refresh from "../assets/refresh.png";
 import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import "../styles/communitydetails.css";
+import Skeleton from "@mui/material/Skeleton";
 
 import Navbar from "./navbar";
 
@@ -40,6 +40,7 @@ function Communities() {
   }, []);
 
   const handleRefresh = () => {
+    setCommunityData([]);
     fetchCommunities();
   };
 
@@ -63,13 +64,19 @@ function Communities() {
           <ul className="list-no-bullets list-no-indentation">
             {communityData.map((community, index) => (
               <Link
-                key={community.id} // move key here to avoid warning
+                key={community.id}
                 style={{
                   textDecoration: "none",
                   color: "black",
                   fontWeight: "bold",
                 }}
-                to={`/community/${community.id}`}>
+                to={{
+                  pathname: `/community/${community.id}`,
+                  state: { 
+                    communityName: community.name,
+                    communityDescription: community.description 
+                  }
+                }}>
                 <motion.li
                   initial={index !== 0 ? { y: -50 } : {}}
                   animate={index !== 0 ? { y: 0 } : {}}
@@ -91,8 +98,29 @@ function Communities() {
             ))}
           </ul>
         ) : (
-          <div id="primary-loader">
-            <img id="loading" src={loading} alt="loading" />
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <Skeleton
+              variant="rectangular"
+              height={60}
+              sx={{
+                borderRadius: 2,
+              }}
+            />
+            <Skeleton
+              variant="rectangular"
+              height={60}
+              sx={{
+                borderRadius: 2,
+              }}
+            />
+            <Skeleton
+              variant="rectangular"
+              height={60}
+              sx={{
+                borderRadius: 2,
+              }}
+            />
           </div>
         )
       ) : (
