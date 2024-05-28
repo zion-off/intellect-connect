@@ -61,7 +61,8 @@
   text-decoration: none;
   color: black;
   text-align: center;
-  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-family: "Satoshi-Variable", sans-serif;
+  font-weight: 500;
   font-size: 13px;
   font-weight: 500;
 }
