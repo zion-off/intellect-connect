@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { useParams } from "react-router-dom";
@@ -13,6 +13,8 @@ import TextField from "@mui/material/TextField";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import "../styles/read.css";
 import { makeStyles } from "@mui/styles";
+import back from "../assets/back.png";
+import { ReactComponent as BackIcon } from "../assets/back.svg";
 
 const useStyles = makeStyles({
   customDatePicker: {
@@ -36,6 +38,7 @@ const Read = (props) => {
   const navigate = useNavigate();
 
   const location = useLocation();
+  const { previousPath } = location.state || {};
   const { members } = location.state || {};
 
   const [updatedMembers, setMembers] = useState([]);
@@ -43,11 +46,13 @@ const Read = (props) => {
   useEffect(() => {
     if (members) {
       const initialInputs = {};
-      setMembers(members.map((member) => {
-        const emailPrefix = member.substring(0, member.indexOf("@"));
-        initialInputs[emailPrefix] = ""; // Initialize input values for each member
-        return emailPrefix; // Return the email prefix to update the members array
-      }));
+      setMembers(
+        members.map((member) => {
+          const emailPrefix = member.substring(0, member.indexOf("@"));
+          initialInputs[emailPrefix] = ""; // Initialize input values for each member
+          return emailPrefix; // Return the email prefix to update the members array
+        })
+      );
       setMemberInputs(initialInputs);
     }
   }, [members]);
@@ -114,6 +119,18 @@ const Read = (props) => {
 
   return (
     <div id="read-main-container">
+      <Link to={previousPath}>
+        <BackIcon
+          style={{
+            fill: "#f8f5f2",
+            height: "40px",
+            width: "40px",
+            borderRadius: "50%",
+            backgroundColor: "black",
+            marginTop: "5vh",
+          }}
+        />
+      </Link>
       <h2 id="read-header">Create a new read</h2>
       <form id="read-form" onSubmit={handleSubmit}>
         <input
