@@ -12,7 +12,6 @@ import {
 import { db } from "../firebase";
 import add from "../assets/add.png";
 import refresh from "../assets/refresh.png";
-import loading from "../assets/loading.gif";
 import Navbar from "./navbar";
 import Skeleton from "@mui/material/Skeleton";
 import { motion } from "framer-motion";
@@ -25,6 +24,7 @@ function CommunityDetails() {
   const [newMemberEmail, setNewMemberEmail] = useState("");
 
   const location = useLocation();
+  const currentPath = location.pathname;
   const { communityName, communityDescription } = location.state || {};
   console.log("Community Name: ", communityName);
   console.log("Community Description: ", communityDescription);
@@ -107,7 +107,12 @@ function CommunityDetails() {
   return (
     <div id="community-details-main-container">
       <div id="community-details-icons">
-        <Link to={`/read/${id}`} state={{ members: communityData?.members }}>
+        <Link
+          to={`/read/${id}`}
+          state={{
+            members: communityData?.members,
+            previousPath: currentPath,
+          }}>
           <img id="community-details-add-image" src={add} alt="add" />
         </Link>
         <img
@@ -132,7 +137,7 @@ function CommunityDetails() {
           </p>
         </div>
       ) : (
-        <Skeleton variant="rounded" height={50} style={{marginTop: '20px'}} />
+        <Skeleton variant="rounded" height={50} style={{ marginTop: "20px" }} />
       )}
       <h3 style={{ fontFamily: "ClashDisplay-Variable", fontWeight: "500" }}>
         Readings

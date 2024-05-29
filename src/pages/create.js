@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import Navbar from "./navbar";
+import { ReactComponent as BackIcon } from "../assets/back.svg";
 import "../styles/create.css";
 
 const Create = () => {
@@ -34,6 +35,19 @@ const Create = () => {
 
   return (
     <div id="create-main-container">
+      <Link to="/communities">
+        <BackIcon
+          style={{
+            fill: "#f8f5f2",
+            height: "40px",
+            width: "40px",
+            borderRadius: "50%",
+            backgroundColor: "black",
+            marginTop: "5vh",
+          }}
+        />
+      </Link>
+
       <h2 id="create-header">Create a Community</h2>
       <form id="create-form" onSubmit={handleSubmit}>
         <input
@@ -60,7 +74,9 @@ const Create = () => {
           onChange={(e) => setMemberEmails(e.target.value)}
           required
         />
-        <button id="create-button" type="submit">Save</button>
+        <button id="create-button" type="submit">
+          Save
+        </button>
       </form>
       <Navbar />
     </div>

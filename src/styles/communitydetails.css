@@ -47,11 +47,13 @@
 }
 
 #community-details-add-image {
-  width: 10vw;
+  width: 40px;
+  height: 40px;
   padding-top: 5vh;
 }
 
 #community-details-refresh-image {
-  width: 10vw;
+  width: 40px;
+  height: 40px;
   padding-top: 5vh;
 }
