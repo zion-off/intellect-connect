@@ -107,7 +107,7 @@ function CommunityDetails() {
   return (
     <div id="community-details-main-container">
       <div id="community-details-icons">
-        <Link to={`/read/${id}`}>
+        <Link to={`/read/${id}`} state={{ members: communityData?.members }}>
           <img id="community-details-add-image" src={add} alt="add" />
         </Link>
         <img
@@ -319,7 +319,7 @@ function CommunityDetails() {
           alignItems: "center",
           fontSize: "12px", // Adjust font size according to your needs
           cursor: "pointer", // Make the cursor indicate clickable items
-          margin: "5px 5px 10vh 5px",
+          margin: "5px 5px 15vh 5px",
           backgroundColor: "#4CAF50",
           border: "none",
         }}>

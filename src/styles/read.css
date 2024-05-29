@@ -1,7 +1,7 @@
 #read-main-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f8f5f2;
   padding: 0 5vw 0 5vw;
 }
@@ -32,7 +32,7 @@
   font-family: 'ClashDisplay-Variable', sans-serif;
 }
 
-#create-pages {
+#create-member-input {
   padding: 15px;
   border-radius: 10px;
   font-family: 'ClashDisplay-Variable', sans-serif;
@@ -40,6 +40,7 @@
 
 #read-button {
   margin-top: 10px;
+  margin-bottom: 10vh;
   z-index: 1;
   background-color: #38a856;
   padding: 15px 100px;

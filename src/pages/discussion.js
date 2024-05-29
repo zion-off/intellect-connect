@@ -13,7 +13,10 @@ import { db, auth } from "../firebase";
 import "../styles/discussion.css";
 import Navbar from "./navbar";
 import post from "../assets/post.png";
+import { ReactComponent as InfoIcon } from "../assets/info.svg";
+import { ReactComponent as CloseIcon } from "../assets/close.svg";
 import Skeleton from "@mui/material/Skeleton";
+import { motion } from "framer-motion";
 
 function Discussion() {
   const { id } = useParams();
@@ -22,12 +25,18 @@ function Discussion() {
   const [postContent, setPostContent] = useState("");
   const [read, setRead] = useState(null);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleIconClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   useEffect(() => {
     const fetchRead = async () => {
       try {
         const docRef = doc(db, "reads", id);
         const docSnap = await getDoc(docRef);
-
+  
         if (docSnap.exists()) {
           setRead(docSnap.data());
         } else {
@@ -37,7 +46,7 @@ function Discussion() {
         console.error("Error fetching document: ", error);
       }
     };
-
+    
     fetchRead();
   }, [id]);
 
@@ -79,12 +88,86 @@ function Discussion() {
 
   return (
     <div id="discussion-main-container">
+      {read && (
+        <motion.div
+          id="discussion-info"
+          animate={{ x: isOpen ? -350 : 0 }}
+          transition={{ type: "spring", stiffness: 50 }}>
+          <CloseIcon
+            style={{
+              fill: "white",
+              height: "15px",
+              width: "15px",
+              backgroundColor: "red",
+              borderRadius: "50%",
+              padding: "5px",
+            }}
+            onClick={() => setIsOpen(!isOpen)}
+          />
+          <div>
+            <p id="discussion-info-author">{read.author}</p>
+          </div>
+          <div>
+            <p id="discussion-info-title">{read.title}</p>
+          </div>
+          <div>
+            <p id="discussion-info-start-date"> Reading from {" "}
+              {read.startDate
+                ? new Date(read.startDate).toLocaleDateString()
+                : ""} {" to "} {read.finishDate
+                  ? new Date(read.finishDate).toLocaleDateString()
+                  : ""}
+            </p>
+          </div>
+          <div id="discussion-member-inputs">
+            {read.memberInputs &&
+              Object.entries(read.memberInputs).map(
+                ([member, input], index) => (
+                  <div
+                    id="discussion-assigned-pages"
+                    key={index}
+                    style={{ marginBottom: "10px" }}>
+                    <strong>{member}</strong> reads {input}
+                  </div>
+                )
+              )}
+          </div>
+          <div>
+            <p id="discussion-info-download-link">
+              <a
+                href={read.fileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", color: "navy" }}>
+                Download file
+              </a>
+            </p>
+          </div>
+        </motion.div>
+      )}
       <div>
-        <h3 id="discussion-header">Discussion</h3>
+        <div id="discussion-top-row">
+          <h3 id="discussion-header">Discussion</h3>
+          <InfoIcon
+            id="discussion-info-icon"
+            style={{
+              fill: "black",
+              height: "20px",
+              width: "20px",
+              marginRight: "10px",
+            }}
+            onClick={handleIconClick}
+          />
+        </div>
+
         {read ? (
           <div>
             <h2 id="discussion-book-title">
-              <a href={read.fileUrl} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
+              <a
+                href={read.fileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", color: "#38a856" }}>
                 {read.title}
               </a>
             </h2>
@@ -109,7 +192,7 @@ function Discussion() {
             ))}
           </div>
         ) : (
-          <p>No posts found.</p>
+          <p style={{ fontFamily: "Satoshi-Variable" }}>No posts found.</p>
         )
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
