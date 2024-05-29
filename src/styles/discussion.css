@@ -7,10 +7,16 @@
 }
 
 #discussion-header {
-  margin-top: 10vh;
   color: #a9a9a9;
   font-family: 'ClashDisplay-Variable', sans-serif;
   font-weight: 600;
+}
+
+#discussion-top-row {
+  margin: 5vh 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #discussion-title {
@@ -18,9 +24,59 @@
   font-weight: bold;
 }
 
+#discussion-info-title {
+  font-family: "Satoshi-Variable", sans-serif;
+  font-weight: bold;
+  color: #3e3e3e;
+  font-size: 28px;
+  margin: -10px 0 0 0;
+}
+
+#discussion-info-author {
+  font-family: "Satoshi-Variable", sans-serif;
+  font-weight: bold;
+  color: #3e3e3e;
+  font-size: 18px;
+  margin: 50px 0 0 0;
+}
+
+#discussion-info-start-date {
+  font-family: "Satoshi-Variable", sans-serif;
+  color: #3e3e3e;
+  font-size: small;
+  margin: 10px 0 10px 0;
+}
+
+#discussion-info-download-link {
+  font-family: "Satoshi-Variable", sans-serif;
+  font-weight: bold;
+  color: #3e3e3e;
+  font-size: 18px;
+  margin: 20px 0 0 0;
+}
+
 #discussion-book-title {
   font-family: 'ClashDisplay-Variable', sans-serif;
   font-weight: 600;
+  font-size: 40px;
+  margin: 10px 0;
+}
+
+#discussion-member-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px 5px;
+  margin-bottom: 20px;
+}
+
+#discussion-assigned-pages {
+  font-family: "Satoshi-Variable", sans-serif;
+  font-weight: 500;
+  font-size: small;
+  background-color: #8c8c8c;
+  color: rgb(245, 245, 245);
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 
 #discussion-content {
@@ -59,6 +115,24 @@
 
 #discussion-post-icon {
   width: 30px;
+}
+
+#discussion-info-icon {
+  height: 20px;
+}
+
+#discussion-info {
+  position: absolute;
+  border-radius: 10px;
+  top: 5vh;
+  left: 100vw;
+  background-color: #e5e5e5fa;
+  padding: 25px 10vw 10px 25px;
+  min-height: 80vh;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #discussion-old-posts {

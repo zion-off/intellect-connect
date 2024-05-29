@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { useParams } from "react-router-dom";
@@ -24,15 +25,39 @@ const useStyles = makeStyles({
 const Read = (props) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [pages, setPages] = useState("");
   const [startDate, setStartDate] = useState(undefined);
   const [finishDate, setFinishDate] = useState(undefined);
   const [file, setFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [memberInputs, setMemberInputs] = useState({});
   const classes = useStyles();
   const fileInputRef = useRef(null);
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const { members } = location.state || {};
+
+  const [updatedMembers, setMembers] = useState([]);
+
+  useEffect(() => {
+    if (members) {
+      const initialInputs = {};
+      setMembers(members.map((member) => {
+        const emailPrefix = member.substring(0, member.indexOf("@"));
+        initialInputs[emailPrefix] = ""; // Initialize input values for each member
+        return emailPrefix; // Return the email prefix to update the members array
+      }));
+      setMemberInputs(initialInputs);
+    }
+  }, [members]);
+
+  const handleInputChange = (member, value) => {
+    setMemberInputs((prevInputs) => ({
+      ...prevInputs,
+      [member]: value,
+    }));
+  };
 
   const { id } = useParams();
 
@@ -49,8 +74,6 @@ const Read = (props) => {
       const fileRef = ref(storage, file.name);
       // Upload file to Firebase Storage
       const uploadTask = uploadBytesResumable(fileRef, file);
-      const firebaseStartDate = startDate.toDate();
-      const firebaseFinishDate = finishDate.toDate();
 
       uploadTask.on(
         "state_changed",
@@ -69,11 +92,11 @@ const Read = (props) => {
             const docRef = await addDoc(collection(db, "reads"), {
               title,
               author,
-              pages: parseInt(pages),
-              firebaseStartDate,
-              firebaseFinishDate,
+              startDate: startDate.toISOString(),
+              finishDate: finishDate.toISOString(),
               fileUrl: downloadURL,
               communityId: id,
+              memberInputs,
             });
             console.log("Read added with ID: ", docRef.id);
             navigate(`/community/${id}`);
@@ -109,14 +132,17 @@ const Read = (props) => {
           onChange={(e) => setAuthor(e.target.value)}
           required
         />
-        <input
-          type="text"
-          id="create-pages"
-          value={pages}
-          placeholder="Pages"
-          onChange={(e) => setPages(e.target.value)}
-          required
-        />
+        {updatedMembers &&
+          updatedMembers.map((member, index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder={`${member} reads...`}
+              value={memberInputs[member]}
+              onChange={(e) => handleInputChange(member, e.target.value)}
+              id="create-member-input"
+            />
+          ))}
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
