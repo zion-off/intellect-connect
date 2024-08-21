@@ -1,79 +1,105 @@
 .welcome-main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 100vh;
   background-color: #f8f5f2;
+}
+
+#welcome-design-element-one {
+  position: absolute;
+  z-index: 0;
+  width: 120px;
+  right: -100px;
+  top: -50px;
+  animation: rotate 2s linear 0s infinite;
+}
+#welcome-design-element-two {
+  position: absolute;
+  z-index: 0;
+  width: 120px;
+  left: -100px;
+  bottom: -120px;
+  animation: rotate 2s linear 0s infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  50.01% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+.welcome-heading {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #welcome-heading {
   z-index: 1;
   font-size: 50px;
   color: #f45d48;
-  margin: 20vh 0 0 0;
-  padding: 20vh 40px 0 40px;
-  font-family: 'ClashGrotesk-Variable', sans-serif;
+  text-shadow: 2px 2px 0px #000000;
+  font-family: "ClashGrotesk-Variable", sans-serif;
   font-weight: 500;
+  margin: 0px;
 }
 
 #welcome-subheading {
   z-index: 1;
-  margin-bottom: 20vh;
   font-size: 15px;
-  padding: 0 10vw;
-  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-family: "ClashDisplay-Variable", sans-serif;
   font-weight: 500;
   color: #078080;
+  margin: 0px;
 }
 
 #welcome-buttons {
   z-index: 1;
   display: flex;
+  width: 30%;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   width: 50%;
   gap: 1vh;
-  position: absolute;
-  bottom: 20vh;
 }
 
 #welcome-login-button {
   z-index: 1;
-  background-color: #38a856;
-  padding: 2px 55px;
+  padding: 2px 0px;
   border-radius: 45px;
   text-decoration: none;
-  color: black;
+  color: #078080;
   text-align: center;
-  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-family: "Satoshi-Variable", sans-serif;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 #welcome-signup-button {
+  width: 100%;
   z-index: 1;
-  background-color: #3cb95d8f;
-  padding: 2px 55px;
-  border-radius: 45px;
-  /* border: solid;
-  border-color: black; */
+  background-color: #078080;
+  box-shadow: 2px 2px 0px #000000;
+  padding: 2px 0px;
+  border-radius: var(--button-radius);
   text-decoration: none;
   color: black;
   text-align: center;
   font-family: "Satoshi-Variable", sans-serif;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
-}
-
-#welcome-blue-circle {
-  z-index: 0;
-  background-color: #078080;
-  border-radius: 500px 500px 0 0;
-  bottom: -60%;
-  width: 250%;
-  min-height: 500px;
-  align-items: center;
-  filter: drop-shadow(0 -4mm 4mm rgba(37, 37, 37, 0.071));
 }

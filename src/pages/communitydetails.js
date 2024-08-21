@@ -29,10 +29,15 @@ function CommunityDetails() {
   console.log("Community Name: ", communityName);
   console.log("Community Description: ", communityDescription);
 
-  const getRandomColor = () => {
-    let hue = Math.floor(Math.random() * 360); // Random hue from 0 to 360
-    return `hsl(${hue}, 70%, 60%)`; // Fixed saturation and lightness
-  };
+  const colors = [
+    "#f0dab1",
+    "#b6c6d3",
+    "#f4b335",
+    "#ef8903",
+    "#047835",
+    "#bc2f2d",
+    "#94252c",
+  ];
 
   const fetchCommunityData = async () => {
     try {
@@ -107,14 +112,18 @@ function CommunityDetails() {
   return (
     <div id="community-details-main-container">
       <div id="community-details-icons">
-        <Link
-          to={`/read/${id}`}
-          state={{
-            members: communityData?.members,
-            previousPath: currentPath,
-          }}>
-          <img id="community-details-add-image" src={add} alt="add" />
-        </Link>
+        <div>
+          <Link
+            to={`/read/${id}`}
+            state={{
+              members: communityData?.members,
+              previousPath: currentPath,
+            }}
+          >
+            <img id="community-details-add-image" src={add} alt="add" />
+          </Link>
+        </div>
+
         <img
           id="community-details-refresh-image"
           src={refresh}
@@ -123,11 +132,6 @@ function CommunityDetails() {
           style={{ cursor: "pointer" }}
         />
       </div>
-
-      {/* <div>
-        <h2 id="communitydetails-communityname">{communityName}</h2>
-        <p id="communitydetails-communitydescription">{communityDescription}</p>
-      </div> */}
 
       {communityData ? (
         <div>
@@ -150,7 +154,8 @@ function CommunityDetails() {
               <li id="communitydetails-reading-list-items" key={read.id}>
                 <Link
                   id="community-details-reading-link"
-                  to={`/discussion/${read.id}`}>
+                  to={`/discussion/${read.id}`}
+                >
                   <h4>{read.title}</h4>
                 </Link>
                 <p>{read.description}</p>
@@ -159,7 +164,8 @@ function CommunityDetails() {
           </ul>
         ) : (
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+          >
             <Skeleton
               variant="rectangular"
               height={60}
@@ -199,10 +205,11 @@ function CommunityDetails() {
               return (
                 <li
                   key={index}
-                  style={{ display: "inline-block", margin: "5px" }}>
+                  style={{ display: "inline-block", margin: "5px" }}
+                >
                   <div
                     style={{
-                      backgroundColor: getRandomColor(),
+                      backgroundColor: colors[index % colors.length],
                       color: "white",
                       width: "40px",
                       height: "40px",
@@ -214,7 +221,8 @@ function CommunityDetails() {
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
-                    }}>
+                    }}
+                  >
                     {emailPrefix}
                   </div>
                 </li>
@@ -248,7 +256,8 @@ function CommunityDetails() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-          }}>
+          }}
+        >
           <div
             style={{
               position: "relative",
@@ -259,7 +268,8 @@ function CommunityDetails() {
               display: "flex",
               flexDirection: "column",
               borderRadius: "10px",
-            }}>
+            }}
+          >
             <p style={{ fontFamily: "ClashDisplay-Variable" }}>
               Add a new member
             </p>
@@ -282,7 +292,8 @@ function CommunityDetails() {
                 display: "flex",
                 justifyContent: "right",
                 gap: "5px",
-              }}>
+              }}
+            >
               <button
                 style={{
                   background: "black",
@@ -292,7 +303,8 @@ function CommunityDetails() {
                   color: "white",
                   fontFamily: "ClashDisplay-Variable",
                 }}
-                onClick={() => setShowAddMemberDialog(false)}>
+                onClick={() => setShowAddMemberDialog(false)}
+              >
                 Cancel
               </button>
               <button
@@ -304,7 +316,8 @@ function CommunityDetails() {
                   color: "white",
                   fontFamily: "ClashDisplay-Variable",
                 }}
-                onClick={handleAddMember}>
+                onClick={handleAddMember}
+              >
                 Add Member
               </button>
             </div>
@@ -327,7 +340,8 @@ function CommunityDetails() {
           margin: "5px 5px 15vh 5px",
           backgroundColor: "#4CAF50",
           border: "none",
-        }}>
+        }}
+      >
         +
       </button>
       <Navbar />

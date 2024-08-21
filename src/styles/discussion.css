@@ -10,7 +10,7 @@
 
 #discussion-header {
   color: #a9a9a9;
-  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-family: "ClashDisplay-Variable", sans-serif;
   font-weight: 600;
 }
 
@@ -54,11 +54,16 @@
   font-weight: bold;
   color: #3e3e3e;
   font-size: 18px;
-  margin: 20px 0 0 0;
+  text-decoration: none;
+}
+
+#discussion-info-download-link a {
+  text-decoration: none;
+  color: #0d1d41;
 }
 
 #discussion-book-title {
-  font-family: 'ClashDisplay-Variable', sans-serif;
+  font-family: "ClashDisplay-Variable", sans-serif;
   font-weight: 600;
   font-size: 40px;
   margin: 10px 0;
@@ -76,7 +81,7 @@
   font-family: "Satoshi-Variable", sans-serif;
   font-weight: 500;
   font-size: small;
-  background-color: #8c8c8c;
+  background-color: #bc2f2d;
   color: rgb(245, 245, 245);
   padding: 5px 10px;
   border-radius: 10px;
@@ -128,8 +133,7 @@
   position: absolute;
   border-radius: 10px;
   top: 5vh;
-  left: 100vw;
-  background-color: #e5e5e5fa;
+  background-color: #f0dab1;
   padding: 25px 10vw 10px 25px;
   min-height: 80vh;
   width: 90vw;

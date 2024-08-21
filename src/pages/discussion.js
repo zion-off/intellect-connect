@@ -36,7 +36,7 @@ function Discussion() {
       try {
         const docRef = doc(db, "reads", id);
         const docSnap = await getDoc(docRef);
-  
+
         if (docSnap.exists()) {
           setRead(docSnap.data());
         } else {
@@ -46,7 +46,7 @@ function Discussion() {
         console.error("Error fetching document: ", error);
       }
     };
-    
+
     fetchRead();
   }, [id]);
 
@@ -88,11 +88,26 @@ function Discussion() {
 
   return (
     <div id="discussion-main-container">
+      {isOpen && (
+        <div
+          style={{
+            backgroundColor: "black",
+            width: "100vw",
+            height: "100vh",
+            zIndex: 20,
+            opacity: "0.5",
+            position: "absolute",
+            left: 0,
+          }}
+        ></div>
+      )}
       {read && (
         <motion.div
           id="discussion-info"
-          animate={{ x: isOpen ? -350 : 0 }}
-          transition={{ type: "spring", stiffness: 50 }}>
+          animate={{ x: isOpen ? 0 : 900 }}
+          transition={{ type: "spring", stiffness: 50 }}
+          style={{ zIndex: 30 }}
+        >
           <CloseIcon
             style={{
               fill: "white",
@@ -102,43 +117,43 @@ function Discussion() {
               borderRadius: "50%",
               padding: "5px",
             }}
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={handleIconClick}
           />
           <div>
             <p id="discussion-info-author">{read.author}</p>
-          </div>
-          <div>
             <p id="discussion-info-title">{read.title}</p>
-          </div>
-          <div>
-            <p id="discussion-info-start-date"> Reading from {" "}
-              {read.startDate
-                ? new Date(read.startDate).toLocaleDateString()
-                : ""} {" to "} {read.finishDate
+            <div>
+              <p id="discussion-info-start-date">
+                {" "}
+                Reading from{" "}
+                {read.startDate
+                  ? new Date(read.startDate).toLocaleDateString()
+                  : ""}{" "}
+                {" to "}{" "}
+                {read.finishDate
                   ? new Date(read.finishDate).toLocaleDateString()
                   : ""}
-            </p>
+              </p>
+            </div>
+            <div id="discussion-member-inputs">
+              {read.memberInputs &&
+                Object.entries(read.memberInputs).map(
+                  ([member, input], index) => (
+                    <div
+                      id="discussion-assigned-pages"
+                      key={index}
+                      style={{ marginBottom: "10px" }}
+                    >
+                      <strong>{member}</strong> reads {input}
+                    </div>
+                  )
+                )}
+            </div>
           </div>
-          <div id="discussion-member-inputs">
-            {read.memberInputs &&
-              Object.entries(read.memberInputs).map(
-                ([member, input], index) => (
-                  <div
-                    id="discussion-assigned-pages"
-                    key={index}
-                    style={{ marginBottom: "10px" }}>
-                    <strong>{member}</strong> reads {input}
-                  </div>
-                )
-              )}
-          </div>
+
           <div>
             <p id="discussion-info-download-link">
-              <a
-                href={read.fileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none", color: "navy" }}>
+              <a href={read.fileUrl} target="_blank" rel="noopener noreferrer">
                 Download file
               </a>
             </p>
@@ -167,7 +182,8 @@ function Discussion() {
                 href={read.fileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ textDecoration: "none", color: "#38a856" }}>
+                style={{ textDecoration: "none", color: "#047835" }}
+              >
                 {read.title}
               </a>
             </h2>

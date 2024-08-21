@@ -210,11 +210,11 @@ const Profile = () => {
           ) : (
             <Skeleton variant="rectangular" height={20} />
           )}
-          <button id="profile-edit-button" onClick={handleEdit}>
+          <button id="profile-edit-button" style={{color: "black"}} onClick={handleEdit}>
             Edit profile
           </button>
           <div id="profile-logout-container">
-            <button id="profile-logout-button" onClick={handleLogout}>
+            <button id="profile-logout-button" style={{color: "black"}} onClick={handleLogout}>
               Logout
             </button>
           </div>

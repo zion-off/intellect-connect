@@ -29,11 +29,11 @@
 }
 
 #communitydetails-reading-list-items {
-  background-color: white;
+  background-color: #f0dab1;
   padding: 5px 15px;
   border-radius: 10px;
   margin: 10px 0;
-  border: 1px solid black;
+  border: 2px solid black;
 }
 
 #community-details-reading-link {

@@ -14,6 +14,15 @@ import { motion } from "framer-motion";
 
 function Communities() {
   const [communityData, setCommunityData] = useState([]);
+  const colors = [
+    "#f0dab1",
+    "#b6c6d3",
+    "#f4b335",
+    "#ef8903",
+    "#047835",
+    "#bc2f2d",
+    "#94252c",
+  ];
 
   const fetchCommunities = async () => {
     try {
@@ -72,11 +81,12 @@ function Communities() {
                 }}
                 to={{
                   pathname: `/community/${community.id}`,
-                  state: { 
+                  state: {
                     communityName: community.name,
-                    communityDescription: community.description 
-                  }
-                }}>
+                    communityDescription: community.description,
+                  },
+                }}
+              >
                 <motion.li
                   initial={index !== 0 ? { y: -50 } : {}}
                   animate={index !== 0 ? { y: 0 } : {}}
@@ -90,9 +100,12 @@ function Communities() {
                   }
                   style={{
                     zIndex: communityData.length - index,
-                    border: "1px solid black",
-                    paddingTop: index === 0 ? "20px" : "30px",
-                  }}>
+                    border: "2px solid black",
+                    paddingTop: index === 0 ? "60px" : "80px",
+                    backgroundColor: colors[index % colors.length],
+                    color: "white"
+                  }}
+                >
                   {community.name}
                 </motion.li>
               </Link>
@@ -100,24 +113,25 @@ function Communities() {
           </ul>
         ) : (
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+          >
             <Skeleton
               variant="rectangular"
-              height={60}
+              height={120}
               sx={{
                 borderRadius: 2,
               }}
             />
             <Skeleton
               variant="rectangular"
-              height={60}
+              height={120}
               sx={{
                 borderRadius: 2,
               }}
             />
             <Skeleton
               variant="rectangular"
-              height={60}
+              height={120}
               sx={{
                 borderRadius: 2,
               }}

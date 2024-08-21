@@ -1,10 +1,11 @@
 #register-main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 100vh;
   background-color: #f8f5f2;
+  padding: 0 20px;
 }
 
 #register-header {
@@ -17,67 +18,55 @@
 }
 
 #register-form {
-  margin-top: 25vh;
   z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  border-radius: 10px;
+  border-radius: var(--button-radius);
+  width: 100%;
+  max-width: 500px;
 }
 
 #register-name {
-  width: 80vw;
+  width: 100%;
   height: 40px;
   padding: 10px;
-  /* border: solid;
-  border-color: black;
-  border-width: 3px 3px 0px 3px; */
   border-radius: 10px 10px 0 0;
-
+  box-sizing: border-box;
 }
 
 #register-email {
-  width: 80vw;
+  width: 100%;
   height: 40px;
   padding: 10px;
-  /* border: solid;
-  border-color: black;
-  border-width: 3px 3px 3px 3px; */
+  box-sizing: border-box;
 }
 
 #register-password {
-  width: 80vw;
+  width: 100%;
   height: 40px;
   padding: 10px;
-  /* border: solid;
-  border-color: black;
-  border-width: 0px 3px 3px 3px; */
   border-radius: 0 0 10px 10px;
+  box-sizing: border-box;
+}
+
+#register-name:focus, #register-email:focus, #register-password:focus {
+  outline: none;
 }
 
 #register-register-button {
   margin-top: 20px;
+  padding: 10px;
   z-index: 1;
-  padding: 20px 110px;
-  border-radius: 45px;
+  width: 100%;
+  border-radius: var(--button-radius);
   text-decoration: none;
   color: #f8f5f2;
   width: 100%;
   font-family: 'ClashDisplay-Variable', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   background-color: #38a856;
-}
-
-#register-yellow-circle {
-  z-index: 0;
-  position: absolute;
-  background-color: #f9bc60;
-  border-radius: 500px / 400px;
-  top: -75%;
-  width: 120%;
-  height: 90%;
-  align-items: center;
+  box-shadow: 2px 2px 0px #000000;
 }

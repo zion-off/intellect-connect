@@ -50,10 +50,6 @@ const Login = () => {
   return (
     <div className="login-main-container">
       <h1 id="login-title">Get back to your communities!</h1>
-      <motion.div
-        animate={{ y: -250 }}
-        transition={{ type: "spring", stiffness: 100 }}
-        id="login-blue-circle"></motion.div>
       {error && <p>{error}</p>}
       <form onSubmit={handleLogin} id="login-form">
         <input
@@ -75,19 +71,20 @@ const Login = () => {
         <button id="login-login-button" type="submit">
           Login
         </button>
+        <p
+          style={{
+            color: "#38a856",
+            zIndex: "100",
+            fontSize: "small",
+            fontFamily: "ClashDisplay-Variable",
+          }}
+        >
+          Back to{" "}
+          <Link style={{ color: "#38a856" }} to={`/`}>
+            home
+          </Link>
+        </p>
       </form>
-      <p
-        style={{
-          color: "#f8f5f2",
-          zIndex: "100",
-          fontSize: "small",
-          fontFamily: "ClashDisplay-Variable",
-        }}>
-        Back to{" "}
-        <Link style={{ color: "#f8f5f2" }} to={`/`}>
-          home
-        </Link>
-      </p>
     </div>
   );
 };

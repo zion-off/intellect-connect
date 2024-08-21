@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/register.css";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db } from "../firebase"; // Assuming you have a firebase.js file for authentication
+import { auth, db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
-
-import { motion } from "framer-motion";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -46,10 +44,6 @@ const Register = () => {
 
   return (
     <div id="register-main-container">
-      <motion.div
-        animate={{ y: 250 }}
-        transition={{ type: "spring", stiffness: 50 }}
-        id="register-yellow-circle"></motion.div>
       <h2 id="register-header">
         Create a <br /> new account
       </h2>
